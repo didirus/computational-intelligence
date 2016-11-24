@@ -33,7 +33,8 @@ import java.io.FileReader;
 /**
  * Created by iris on 16-11-16.
  */
-public class RecurrentNeuralNetwork {
+public class RecurrentNeuralNetwork extends EncogModel implements Serializable  {
+    private static final long serialVersionUID = -88L;
 
     static BasicNetwork createElmanNetwork(){
         //construct a Elman type network
@@ -43,6 +44,23 @@ public class RecurrentNeuralNetwork {
         pattern.addHiddenLayer(6);
         pattern.setOutputNeurons(1);
         return (BasicNetwork)pattern.generate();
+    }
+
+    public void storeGenome() {
+        ObjectOutputStream out = null;
+        try {
+            //create the memory folder manually
+            out = new ObjectOutputStream(new FileOutputStream("memory/mydriver.mem"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            if (out != null) {
+                out.writeObject(this);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static double trainNetwork(final String what,
@@ -66,7 +84,7 @@ public class RecurrentNeuralNetwork {
     }
 
     public static void main(String [ ] args){
-        RecurrentNeuralNetwork algorithm = new RecurrentNeuralNetwork();
+        //RecurrentNeuralNetwork algorithm = new RecurrentNeuralNetwork();
         //BasicNetwork ElmanNN = algorithm.createElmanNetwork();
         File csvfile = new File("/home/iris/Documents/MasterAI/ComputationalIntelligence/RaceProject/src/train_data/aalborg.csv");
         VersatileDataSource source = new CSVDataSource(csvfile, true, CSVFormat.DECIMAL_POINT);
@@ -90,7 +108,7 @@ public class RecurrentNeuralNetwork {
 
         data.analyze();
         data.defineMultipleOutputsOthersInput(outputColumns);
-        EncogModel model = new EncogModel(data) ;
+        RecurrentNeuralNetwork model = new RecurrentNeuralNetwork(data) ;
         model.selectMethod(data, MLMethodFactory.TYPE_NEAT);
 
         // Send any output to the console.
@@ -125,6 +143,7 @@ public class RecurrentNeuralNetwork {
         System.out.println(model);
         System.out.println(model.getPredictedFeatures());
         System.out.println(model.getReport());
+        model.storeGenome();
 
 
 
