@@ -26,7 +26,6 @@ import org.encog.plugin.system.SystemActivationPlugin;
 import org.encog.util.csv.CSVFormat;
 import org.encog.util.simple.EncogUtility;
 import org.encog.util.simple.TrainingSetUtil;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -68,7 +67,7 @@ public class RecurrentNeuralNetwork {
 
     public static void main(String [ ] args){
         RecurrentNeuralNetwork algorithm = new RecurrentNeuralNetwork();
-        BasicNetwork ElmanNN = algorithm.createElmanNetwork();
+        //BasicNetwork ElmanNN = algorithm.createElmanNetwork();
         File csvfile = new File("/home/iris/Documents/MasterAI/ComputationalIntelligence/RaceProject/src/train_data/aalborg.csv");
         VersatileDataSource source = new CSVDataSource(csvfile, true, CSVFormat.DECIMAL_POINT);
         VersatileMLDataSet data = new VersatileMLDataSet(source);
@@ -78,8 +77,6 @@ public class RecurrentNeuralNetwork {
         ColumnDefinition columnSteering = data.defineSourceColumn("STEERING", 2, ColumnType.continuous);
 
         //source.rewind();
-
-
         ColumnDefinition[] outputColumns = new ColumnDefinition[3];
         outputColumns[0] = columnAcceleration;
         outputColumns[1] = columnBrake;
@@ -94,9 +91,6 @@ public class RecurrentNeuralNetwork {
         data.analyze();
         data.defineMultipleOutputsOthersInput(outputColumns);
         EncogModel model = new EncogModel(data) ;
-        //model.selectMethod( data , MLMethodFactory.TYPE_FEEDFORWARD);
-        System.out.println(columnSteering.getMean());
-
         model.selectMethod(data, MLMethodFactory.TYPE_NEAT);
 
         // Send any output to the console.
@@ -115,7 +109,7 @@ public class RecurrentNeuralNetwork {
         model.selectTrainingType(data);
 
         // Use a 5-fold cross-validated train.  Return the best method found.
-        MLRegression bestMethod = (MLRegression)model.crossvalidate(2, true);
+        MLRegression bestMethod = (MLRegression)model.crossvalidate(5, true);
 
         // Display the training and validation errors.
         System.out.println( "Training error: " + EncogUtility.calculateRegressionError(bestMethod, model.getTrainingDataset()));
@@ -127,6 +121,12 @@ public class RecurrentNeuralNetwork {
 
         // Display the final model.
         System.out.println("Final model: " + bestMethod);
+
+        System.out.println(model);
+        System.out.println(model.getPredictedFeatures());
+        System.out.println(model.getReport());
+
+
 
         //double error = trainNetwork("Elman", ElmanNN, data );
         //System.out.println(error);
