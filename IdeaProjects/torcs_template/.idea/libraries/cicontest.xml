@@ -1,8 +1,7 @@
 <component name="libraryTable">
-  <library name="lib">
+  <library name="cicontest">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/lib/cicontest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/TORCSLauncher.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
