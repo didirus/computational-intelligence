@@ -40,42 +40,6 @@ public class DefaultDriverAlgorithm extends AbstractAlgorithm {
         //DriversUtils.clearCheckpoint();
     }
 
-//import org.encog.ConsoleStatusReportable;
-//import org.encog.engine.network.activation.ActivationSigmoid;
-//import org.encog.ml.CalculateScore;
-//import org.encog.ml.MLRegression;
-//import org.encog.ml.data.MLData;
-//import org.encog.ml.data.MLDataSet;
-//import org.encog.ml.data.basic.BasicMLDataSet;
-//import org.encog.ml.data.versatile.NormalizationHelper;
-//import org.encog.ml.data.versatile.VersatileMLDataSet;
-//import org.encog.ml.data.versatile.columns.ColumnDefinition;
-//import org.encog.ml.data.versatile.columns.ColumnType;
-//import org.encog.ml.data.versatile.sources.CSVDataSource;
-//import org.encog.ml.data.versatile.sources.VersatileDataSource;
-//import org.encog.ml.factory.MLMethodFactory;
-//import org.encog.ml.model.EncogModel;
-//import org.encog.ml.train.MLTrain;
-//import org.encog.ml.train.strategy.Greedy;
-//import org.encog.ml.train.strategy.HybridStrategy;
-//import org.encog.ml.train.strategy.StopTrainingStrategy;
-//import org.encog.neural.networks.BasicNetwork;
-//import org.encog.neural.networks.training.TrainingSetScore;
-//import org.encog.neural.networks.training.anneal.NeuralSimulatedAnnealing;
-//import org.encog.neural.networks.training.propagation.back.Backpropagation;
-//import org.encog.neural.pattern.ElmanPattern;
-//import org.encog.plugin.system.SystemActivationPlugin;
-//import org.encog.util.csv.CSVFormat;
-//import org.encog.util.csv.ReadCSV;
-//import org.encog.util.obj.SerializeObject;
-//import org.encog.util.simple.EncogUtility;
-//import org.encog.util.simple.TrainingSetUtil;
-//import java.io.BufferedReader;
-//import java.io.File;
-//import java.io.FileReader;
-//import java.util.Arrays;
-
-
     public static void main(String[] args) {
 
         // If you want to train the model, decomment below:
